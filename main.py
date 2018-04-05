@@ -5,8 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 
 
-page = requests.get("http://dataquestio.github.io/" +
-                    "web-scraping-pages/simple.html")
+page = requests.get("http://dataquestio.github.io/web-scraping-pages/" +
+                    "ids_and_classes.html")
 
 if page.status_code == 200:
     print("Page status code: %s Download correct" % page.status_code)
@@ -17,13 +17,11 @@ else:
 
 soup = BeautifulSoup(page.content, 'html.parser')
 
-# print(soup.prettify())
+print(soup.prettify())
 
-print('Elements types:')
-print([type(item) for item in list(soup.children)])
 
-html = list(soup.children)[2]
-body = list(html.children)[3]
-p = list(body.children)[1]
+# Finding all instances of a tag at once
+print("Find all 'p'")
+print(soup.find_all('p', class_="outer-text"))
 
-print(p.get_text())
+soup.find_all('p')[0].get_text()
