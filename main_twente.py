@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
-
-page = requests.get("https://webapps.utwente.nl/reservationscalendar/")
+page_address = "https://webapps.utwente.nl/reservationscalendar/"
+page = requests.get(page_address)
 
 if page.status_code == 200:
     print("Page status code: %s Download correct" % page.status_code)
@@ -11,13 +11,15 @@ else:
 
 # print(page.content)
 
-# soup = BeautifulSoup(page.content, 'ht    ml.parser')
-soup = BeautifulSoup(page.content, 'html5lib')
-
+# soup = BeautifulSoup(page.content, 'lxml')
+# soup = BeautifulSoup(page.content, 'lxml-xml')
+# soup = BeautifulSoup(page.content, 'html.parser')
+# soup = BeautifulSoup(page.content, 'html5lib')
+soup = BeautifulSoup(page_address, 'lxml')
 # print(soup.prettify())
 
 k_header = soup.find_all('div')
-subclass = soup.find_all('div', class_="k-floatwrap k-header k-scheduler-toolbar")
+subclass = soup.find_all(class_="k-state-default k-nav-current")
 # print(soup.find_all('div', class_="k-reset k-scheduler-navigation"))
 
 # print(soup.find_all('li')[0].get_text())
