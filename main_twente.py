@@ -11,10 +11,15 @@ else:
 
 # print(page.content)
 
-soup = BeautifulSoup(page.content, 'html.parser')
+# soup = BeautifulSoup(page.content, 'ht    ml.parser')
+soup = BeautifulSoup(page.content, 'html5lib')
 
 # print(soup.prettify())
 
+k_header = soup.find_all('div')
+subclass = soup.find_all('div', class_="k-floatwrap k-header k-scheduler-toolbar")
 # print(soup.find_all('div', class_="k-reset k-scheduler-navigation"))
 
-print(soup.find_all('div'))
+# print(soup.find_all('li')[0].get_text())
+print(len(k_header))
+print(subclass)
